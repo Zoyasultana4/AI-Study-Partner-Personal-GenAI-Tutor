@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.python-version
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Databases and local data
+*.db
+*.sqlite
+*.sqlite3
+data_store.json
+data.txt
+exist.txt
+uploads/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Next.js frontend
+frontend-next/node_modules/
+frontend-next/.next/
+frontend-next/out/
+frontend-next/package-lock.json
+
+# Build artifacts
+build/
+dist/

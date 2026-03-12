@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Study Partner</title>
+  <link rel="stylesheet" href="/frontend/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-content">
+        <div class="header-title">
+          <h1>✨ AI Study Partner</h1>
+          <p>Transform your notes into powerful study tools instantly</p>
+        </div>
+        <div class="header-stats">
+          <div class="stat-item">
+            <span class="stat-label">Documents</span>
+            <span class="stat-value">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Study Time</span>
+            <span class="stat-value">0h</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Quizzes</span>
+            <span class="stat-value">0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="card upload-card">
+      <div class="card-header">
+        <h2>📚 Upload Your Notes</h2>
+        <p class="card-subtitle">PDF, Word, or Text files supported</p>
+      </div>
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📄</div>
+        <h3>Drag and drop your file</h3>
+        <p>or click to browse</p>
+        <input id="documentInput" type="file" accept=".txt,.pdf,.docx" class="file-input" />
+      </div>
+      <div id="documentStatus" class="status"></div>
+    </section>
+
+    <section class="card plan-card">
+      <div class="card-header">
+        <h2>📚 Study Plan Generator</h2>
+        <p class="card-subtitle">Create a personalized study schedule</p>
+      </div>
+      <div class="plan-form">
+        <label for="planDays" class="form-label">How many days to study?</label>
+        <div class="form-row">
+          <select id="planDays" class="form-select">
+            <option value="1">1 day</option>
+            <option value="2">2 days</option>
+            <option value="3">3 days</option>
+            <option value="4">4 days</option>
+            <option value="5">5 days</option>
+            <option value="6">6 days</option>
+            <option value="7" selected>7 days</option>
+            <option value="8">8 days</option>
+            <option value="9">9 days</option>
+            <option value="10">10 days</option>
+          </select>
+          <button id="generatePlanBtn" class="btn-primary">Generate Plan</button>
+        </div>
+      </div>
+      <div id="planOutput" class="output"></div>
+    </section>
+
+    <div id="sessionTracker" class="session-card">
+      <div class="session-header">
+        <h3>⏱️ Study Session</h3>
+        <span class="session-badge">Active</span>
+      </div>
+      <div class="session-timer" id="sessionTime">00:00</div>
+      <p class="session-subtitle" id="sessionTimerStatus">Ready to study. Click Start!</p>
+      <div class="session-actions">
+        <button id="startTimerBtn" class="btn-primary">▶ Start Session</button>
+        <button id="stopTimerBtn" class="btn-danger" disabled>■ Stop & Save</button>
+      </div>
+    </div>
+
+    <section class="results-section">
+      <h2 class="section-title">📊 Your Study Materials</h2>
+      <div class="grid">
+        <div class="card result-card">
+          <div class="card-header">
+            <h3>📄 Summary</h3>
+          </div>
+          <div class="actions">
+            <button id="summaryGenBtn" class="btn-small">Generate</button>
+          </div>
+          <div id="summaryOutput" class="output"></div>
+        </div>
+
+        <div class="card result-card">
+          <div class="card-header">
+            <h3>🎴 Flashcards</h3>
+          </div>
+          <div class="actions">
+            <button id="flashcardBtn" class="btn-small">Generate</button>
+          </div>
+          <div id="flashcardOutput" class="output"></div>
+        </div>
+
+        <div class="card result-card">
+          <div class="card-header">
+            <h3>❓ Quiz</h3>
+          </div>
+          <div class="actions">
+            <button id="quizBtn" class="btn-small">Generate</button>
+            <button id="saveQuizBtn" class="btn-secondary-small">Save Score</button>
+          </div>
+          <div id="quizOutput" class="output"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card reminder-card">
+      <div class="card-header">
+        <h2>🔔 Study Reminders</h2>
+        <p class="card-subtitle">Never miss a study session</p>
+      </div>
+      
+      <div class="form-group">
+        <label for="reminderTitle" class="form-label">What to study?</label>
+        <input id="reminderTitle" type="text" class="form-input" placeholder="e.g., Review Chapter 3, Practice Problems..." />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reminderDate" class="form-label">📅 Date</label>
+          <input id="reminderDate" type="date" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label for="reminderTime" class="form-label">🕐 Time</label>
+          <input id="reminderTime" type="time" class="form-input" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reminderChannel" class="form-label">Notify via</label>
+        <select id="reminderChannel" class="form-select">
+          <option value="local">📱 Local notification</option>
+          <option value="telegram">💬 Telegram message</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button id="reminderBtn" class="btn-primary">Set Reminder</button>
+        <button id="getChatIdBtn" class="btn-secondary">Get Chat ID from Telegram</button>
+        <button id="telegramTestBtn" class="btn-secondary">Test Telegram</button>
+      </div>
+      <div id="reminderOutput" class="output"></div>
+    </section>
+
+    <section class="card analytics-card">
+      <div class="card-header">
+        <h2>📈 Analytics & Progress</h2>
+        <p class="card-subtitle">Track your learning journey</p>
+      </div>
+      <div class="actions">
+        <button id="analyticsBtn" class="btn-primary">Refresh Stats</button>
+      </div>
+      <div id="analyticsOutput" class="output"></div>
+    </section>
+  </div>
+
+  <script src="/frontend/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+🤖 TELEGRAM SETUP GUIDE
+========================
+
+Follow these steps to enable Telegram reminders:
+
+STEP 1: Get Bot Token from BotFather
+====================================
+1. Open Telegram (phone/web/desktop)
+2. Search for: @BotFather
+3. Send: /newbot
+4. Choose a name (e.g., "Study Partner Bot")
+5. Choose a username (must end with "bot", e.g., "MyStudyBot")
+6. BotFather will give you a TOKEN like: 123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+7. COPY AND SAVE THIS TOKEN
+
+STEP 2: Get Your Chat ID from userinfobot
+==========================================
+1. In Telegram, search for: @userinfobot
+2. Send: /start
+3. It will show you a User ID like: 987654321
+4. COPY AND SAVE THIS NUMBER
+
+STEP 3: Update .env File
+=========================
+Open the .env file in this folder and replace:
+
+TELEGRAM_BOT_TOKEN=paste_your_bot_token_here
+↓↓↓ with your actual token ↓↓↓
+TELEGRAM_BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+
+TELEGRAM_CHAT_ID=paste_your_chat_id_here
+↓↓↓ with your actual chat ID ↓↓↓
+TELEGRAM_CHAT_ID=987654321
+
+STEP 4: Restart Server
+=======================
+The server will automatically reload with your new credentials.
+
+STEP 5: Test Telegram
+======================
+Go back to the app and click "Test Telegram" button.
+You should receive a message on Telegram saying:
+"AI Study Partner: Telegram test message ✅"
+
+If you see this, Telegram is working! 🎉
+
+TROUBLESHOOTING:
+================
+- Make sure your bot token is correct (no spaces, full token)
+- Make sure your chat ID is correct (just numbers)
+- The bot must be started (send /start to the bot first)
+- Check that your internet connection is working
